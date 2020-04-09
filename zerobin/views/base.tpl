@@ -91,27 +91,6 @@
 
     <div class="container" id="wrap-content">
       <div class="row">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list previous-pastes">
-              <li class="nav-header">Previous pastes</li>
-              <li class="item local-storage">
-                <em class="grey">
-                  Your previous pastes will be saved in  your browser using
-                  <a href="http://www.w3.org/TR/webstorage/">localStorage</a>.
-                </em>
-              </li>
-              <li class="item no-local-storage">
-                <em class="grey">
-                  Sorry your browser does not support
-                  <a href="http://www.w3.org/TR/webstorage/">LocalStorage</a>,
-                  We cannot display your previous pastes.
-                </em>
-              </li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-
         <div id='main' class="span10">
            {{!base}}
 
