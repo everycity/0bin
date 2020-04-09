@@ -23,6 +23,7 @@ class Paste(object):
 
     DURATIONS = {
         '1_day': 24 * 3600,
+        '1_week': 7 * 24 * 3600,
         '1_month': 30 * 24 * 3600,
         'never': 365 * 24 * 3600 * 100,
     }

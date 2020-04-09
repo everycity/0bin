@@ -8,7 +8,8 @@
   <label for="expiration" >Expiration:</label>
     <select id="expiration" name="expiration">
       <option value="burn_after_reading">Burn after reading</option>
-      <option selected value="1_day">1 day</option>
+      <option value="1_day">1 day</option>
+      <option selected value="1_week">1 Week</option>
       <option value="1_month">1 month</option>
       <option value="never">Never</option>
     </select>

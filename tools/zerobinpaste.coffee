@@ -4,7 +4,7 @@ program
     .usage('[options] [ file ... ]\n\n' + '  Paste contents of file(s) or stdin to 0bin site.')
     .option('-u, --url [url]', 'URL of a 0bin site.')
     .option('-e, --expire [period]',
-        'Expiration period - one of: 1_view, 1_day (default), 1_month, never.', '1_day')
+        'Expiration period - one of: 1_view, 1_day, 1_week (default), 1_month, never.', '1_week')
     .option('-k, --entropy [bytes]',
         'Encryption key entropy (and hence length) to use,'\
         + ' in bytes (default: 32).\n'\
@@ -39,7 +39,7 @@ if program.expire == '1_view'
     # "burn_after_reading" is too damn long for cli
     program.expire = 'burn_after_reading'
 
-expire_opts = ['burn_after_reading', '1_day', '1_month', 'never']
+expire_opts = ['burn_after_reading', '1_day', '1_week', '1_month', 'never']
 if program.expire not in expire_opts
     console.error(
         "ERROR: --expire value (provided: '#{program.expire}')"\
