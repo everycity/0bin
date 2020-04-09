@@ -121,29 +121,6 @@
 
       <hr>
 
-      <footer>
-       <blockquote>
-        <p>“Few persons can be made to believe that it is not quite an easy thing to invent a method of secret writing which shall baffle investigation. Yet it may be roundly asserted that human ingenuity cannot concoct a cipher which human ingenuity cannot resolve...”</p>
-        <small>Edgar Allan Poe</small>
-      </blockquote>
-
-
-      %if settings.DISPLAY_COUNTER:
-        <h4 id="pixels-total" >
-          <p>ø</p>
-          <strong>{{ pastes_count }}</strong> <br/>pastes øbinned
-        </h4>
-      %end
-
-
-      </br>
-        <p class="greetings span12">
-            Based on an original idea from
-           <a href="http://sebsauvage.net/paste/">sebsauvage.net</a><br>
-           <a href="http://sametmax.com">Sam &amp; Max</a>
-       </p>
-      </footer>
-
       %if settings.COMPRESSED_STATIC_FILES:
         <script src="/static/js/additional.min.js?{{ settings.VERSION }}"></script>
       %else:
