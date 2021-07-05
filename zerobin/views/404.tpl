@@ -1,41 +1,65 @@
-<script type="text/javascript">
-  zerobin.paste_not_found = true;
-</script>
-
-<p class="alert alert-error">
-  <a class="close" data-dismiss="alert" href="#">×</a>
+<p class="alert alert-warning alert-dismissible" :dummy="currentPaste.type = 'not_found'">
+  <a class="close" data-dismiss="alert" href="#" @click.prevent="$event.target.parentNode.remove()">×</a>
   <strong class="title">404 Error!</strong>
   <span class="message">
     Either this paste has expired or this page never existed.
   </span>
 </p>
 
-<p class="file-upload">
-	<input type="button" class="btn btn-upload"  value="Upload File">
-	<input type="file" class="hide-upload" id="file-upload" >
-</p>
+<form class="well" method="post" action="/paste/create" @submit.prevent="encryptAndSendPaste()">
+  <div class="d-flex justify-content-between">
 
-<form class="well" method="post" action="/paste/create">
-<p class="paste-option">
-<label for="expiration" >Expiration:</label>
-  <select id="expiration" name="expiration">
-    <option value="burn_after_reading">Burn after reading</option>
-    <option value="1_day">1 day</option>
-    <option selected value="1_week">1 week</option>
-    <option value="1_month">1 month</option>
-    <option value="never">Never</option>
-  </select>
-<button type="submit" class="btn btn-primary">Submit</button>
-</p>
-<p>
-    <div class="progress progress-striped active">
-      <div class="bar"></div>
+    <div>
+      <div class="file-upload" v-if="support.fileUpload">
+        <input type="button" class="btn btn-primary" :value="isUploading ? 'Uploading...': 'Upload file'"
+          :disabled="isUploading">
+        <input type="file" class="hide-upload" id="file-upload" @change="handleUpload($event.target.files)">
+      </div>
     </div>
-    <textarea rows="10"  style="width:100%;"
-              class="input-xlarge"
-              id="content" name="content"></textarea>
-</p>
+
+    <div class="form-group select-date paste-option">
+      <div class="input-group">
+        <select id="expiration" name="expiration" class="custom-select" v-model="newPaste.expiration">
+          <option value="burn_after_reading">Burn after reading</option>
+          <option value="1_day">Expire in 1 day</option>
+          <option selected value="1_week">Expire in 1 week</option>
+          <option value="1_month">Expire in 1 month</option>
+          <option value="never">Never expire</option>
+        </select>
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div  class="pre-wrapper">
+    <div class="progress" v-show="isLoading">
+      <div class="progress-bar progress-bar-striped" role="progressbar"></div>
+    </div>
+    <textarea rows="10" style="width:100%;" class="form-control" id="content" name="content" autofocus
+      @keydown.ctrl.enter="encryptAndSendPaste()"></textarea>
+  </div>
+
+  <div class="form-group select-date paste-option down" v-if="displayBottomToolBar">
+    <div class="input-group">
+      <select id="expiration" name="expiration" class="custom-select" v-model="newPaste.expiration">
+        <option value="burn_after_reading">Burn after reading</option>
+        <option value="1_day">Expire in 1 day</option>
+        <option selected value="1_week">Expire in 1 week</option>
+        <option value="1_month">Expire in 1 month</option>
+        <option value="never">Never expire</option>
+      </select>
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+
 </form>
+
+
 
 
 % rebase('base', settings=settings, pastes_count=pastes_count)

@@ -1,7 +1,7 @@
-0bin
-====
+0bin: a client side encrypted pastebin
+===========================================
 
-0bin is a client side encrypted pastebin that can run without a database.
+0bin is a pastebin that encrypts the user content in the browser and can run without a database.
 
 * Try it: `0bin.net <http://0bin.net>`_
 * `Report a bug <https://github.com/sametmax/0bin/issues>`_
@@ -10,19 +10,20 @@
 be pasted in it. The idea is that one can (probably...) not be legally entitled
 to `moderate the pastebin content`_ as they have no way to decrypt it.
 
-It's an Python implementation of the
-`zerobin project`_ under the `WTF licence`_. It's easy to
-install even if you know nothing about Python.
+It's an Python implementation of the `zerobin project`_, created by sebsauvage, under the `WTFPL licence`_.
 
-For now tested with IE9, and the last opera, safari, chrome and FF.
+To run zerobin, download zerobin.pyz from the latest release_ then:
 
-There is a `good doc <http://readthedocs.org/docs/0bin/en/latest/>`_,
-but in short::
+::
 
-    pip install zerobin
-    zerobin
+    python zerobin.pyz
 
-0bin runs on Python 2.7 and Python 3.4.
+0bin requires Python 3.7 or higher.
+
+You may need to type :code:`py -3.7 zerobin.pyz` on Windows, or :code:`python3.7 zerobin.pyz` on Mac/Linux, depending on your configuration.
+
+If you are familiar with the Python ecosystem, you can also :code:`python -m pip install zerobin --user` and run :code:`python -m zerobin` for the same effect.
+
 
 How it works
 =============
@@ -51,69 +52,30 @@ Key points:
 Other features
 ======================
 
-- automatic code coloration (no need to specify);
+- automatic code coloration (no need to specify the language);
 - pastebin expiration: 1 day, 1 month or never;
 - burn after reading: the paste is destroyed after the first reading;
 - clone paste: you can't edit a paste, but you can duplicate any of them;
 - code upload: if a file is too big, you can upload it instead of using copy/paste;
 - copy paste to clipboard in a click;
-- get paste short URL in a click;
 - own previous pastes history;
-- visual hash of a paste to easily tell it apart from others in a list;
-- optional command-line tool to encrypt and paste data from shell or scripts.
-
-Technologies used
-==================
-
-- Python_
-- `The Bottle Python Web microframework`_
-- SJCL_ (js crypto tools)
-- jQuery_
-- Bootstrap_, the Twitter HTML5/CSS3 framework
-- VizHash.js_ to create visual hashes from pastes
-- Cherrypy_ (server only)
-- `node.js`_ (for optional command-line tool only)
-
+- reader mode;
 
 Known issues
 ============
 
 - 0bin uses several HTML5/CSS3 features that are not widely supported. In that case we handle the degradation as gracefully as we can.
 - The pasted content size limit check is not accurate. It's just a safety net, so we think it's ok.
-- Some url shorteners and other services storing URLs break the encryption key. We will sanitize the URL as much as we can, but there is a limit to what we can do.
-
-What does 0bin not implement?
-=================================
-
-* Request throttling. It would be inefficient to do it at the app level, and web servers have robust implementations for it.
-* Hash collision prevention: the ratio "probability it happens/consequence seriousness" `is not worth it`_
-* Comments: it was initially planed. But comes with a lot of issues so we chose to focus on lower hanging fruits.
 
 
 .. _moderate the pastebin content: http://www.zdnet.com/blog/security/pastebin-to-hunt-for-hacker-pastes-anonymous-cries-censorship/11336
 .. _zerobin project: https://github.com/sebsauvage/ZeroBin/
-.. _Python: https://en.wikipedia.org/wiki/Python_(programming_language)
-.. _The Bottle Python Web microframework: http://bottlepy.org/
-.. _SJCL: http://crypto.stanford.edu/sjcl/
-.. _jQuery: http://jquery.com/
-.. _Bootstrap: http://twitter.github.com/bootstrap/
-.. _VizHash.js: https://github.com/sametmax/VizHash.js
-.. _Cherrypy: http://www.cherrypy.org/
 .. _node.js: http://nodejs.org/
 .. _is not worth it: http://stackoverflow.com/questions/201705/how-many-random-elements-before-md5-produces-collisions
-.. _WTF licence: http://en.wikipedia.org/wiki/WTFPL
+.. _WTFPL licence: http://en.wikipedia.org/wiki/WTFPL
+.. _release: https://github.com/Tygs/0bin/releases
 
 Contributing
 =============
 
-Please fork the project, clone your repository and add the original repo as an upstream remote to keep yours in sync.
-
-For small fixes (typo and such), you can work on master.
-
-For features, you should create a dedicated branch.
-
-In any case, if you modify Javascript or CSS files, you shall run compress.sh afterward to provide the minified files. It requires your to have yui-compressor installed (apt-get install yui-compressor on the debian family).
-
-We don't require you to rebase/merge, ordinary merging is alright.
-
-Once it's ready, just request a PR.
+We cannot accept contributions for the moment, and will ignore PR.
